@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
+
+import Contacts from './Contacts';
+import Signupform from './SignupForm/SignupForm';
+import Filter from './Filter';
 
 export default class App extends Component {
   state = {
@@ -9,35 +13,42 @@ export default class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
+    filter: '',
+  };
+  addContact = contact => {
+    this.setState(prevState => {
+      console.log(prevState);
+      if (prevState.contacts.some(el => el.name === contact.name)) {
+        console.log('this contact ready yet');
+        return;
+      }
+      return {
+        contacts: [...prevState.contacts, contact],
+      };
+    });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.setState({
-      contacts: [
-        ...this.state.contacts,
-        { id: uuidv4(), name: this.state.name },
-      ],
-    });
-
-    this.setState({ name: '' });
+  handleFilter = filter => {
+    console.log(filter);
+    this.setState({ filter });
   };
 
-  handleChange = e => {
-    console.log(e.target.value);
-    this.setState({
-      name: e.target.value,
-    });
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()),
+    );
   };
 
   render() {
-    const { name } = this.state;
+    const { contacts, filter } = this.state;
+    const visibleContacts = this.getVisibleContacts();
     return (
       <>
         <section>
           <h2>Phonebook</h2>
-          <form
+          <Signupform onAddContact={this.addContact} />
+          {/* <form
             onSubmit={this.handleSubmit}
             style={{
               outline: '1px solid red',
@@ -50,12 +61,15 @@ export default class App extends Component {
               <input type="text" onChange={this.handleChange} value={name} />
             </label>
             <button type="submit">Add contact</button>
-          </form>
+          </form> */}
         </section>
-        <section>
+        <h2>Contacts</h2>
+        <Filter name={filter} onChangeFilter={this.handleFilter} />
+        <Contacts contacts={visibleContacts} />
+        {/* <section>
           <h2>Contact</h2>
           <ul></ul>
-        </section>
+        </section> */}
       </>
     );
   }
