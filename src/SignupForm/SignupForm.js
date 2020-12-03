@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  Form,
+  FormLabel,
+  FormInput,
+  FormButton,
+} from './SignupFormStyledComponent';
+
 import { v4 as uuidv4 } from 'uuid';
 
 export default class Signupform extends Component {
@@ -43,34 +50,40 @@ export default class Signupform extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form
+      <Form
         onSubmit={this.handleSubmit}
-        style={{
-          outline: '1px solid red',
-          width: '300px',
-          padding: '10px',
-        }}
+        // style={{
+        //   outline: '1px solid red',
+        //   width: '300px',
+        //   padding: '10px',
+        // }}
       >
-        <label>
+        <FormLabel>
           Name
-          <input
+          <FormInput
             type="text"
             value={name}
             name="name"
             onChange={this.handleChange}
+            placeholder="Name..."
+            minlength={4}
+            required
           />
-        </label>
-        <label>
+        </FormLabel>
+        <FormLabel>
           Number
-          <input
+          <FormInput
             type="number"
             value={number}
             name="number"
             onChange={this.handleChange}
+            placeholder="111-11-11"
+            required
+            minlength="2"
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </FormLabel>
+        <FormButton type="submit">Add contact</FormButton>
+      </Form>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
 
 import Contacts from './Contacts';
 import Signupform from './SignupForm/SignupForm';
@@ -15,6 +14,7 @@ export default class App extends Component {
     ],
     filter: '',
   };
+
   addContact = contact => {
     this.setState(prevState => {
       console.log(prevState);
@@ -41,36 +41,17 @@ export default class App extends Component {
   };
 
   render() {
-    const { contacts, filter } = this.state;
+    const { filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
     return (
-      <>
-        <section>
-          <h2>Phonebook</h2>
-          <Signupform onAddContact={this.addContact} />
-          {/* <form
-            onSubmit={this.handleSubmit}
-            style={{
-              outline: '1px solid red',
-              width: '300px',
-              padding: '10px',
-            }}
-          >
-            <label>
-              Name
-              <input type="text" onChange={this.handleChange} value={name} />
-            </label>
-            <button type="submit">Add contact</button>
-          </form> */}
-        </section>
+      <section className="section">
+        <h1>Phonebook</h1>
+        <Signupform onAddContact={this.addContact} />
+
         <h2>Contacts</h2>
         <Filter name={filter} onChangeFilter={this.handleFilter} />
         <Contacts contacts={visibleContacts} />
-        {/* <section>
-          <h2>Contact</h2>
-          <ul></ul>
-        </section> */}
-      </>
+      </section>
     );
   }
 }
