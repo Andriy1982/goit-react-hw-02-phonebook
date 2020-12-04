@@ -42,6 +42,10 @@ export const FormInput = styled.input`
   }
 `;
 
+export const FormInputNumber = styled(FormInput)`
+  /* background-color: palevioletred; */
+`;
+
 export const FormButton = styled.button`
   width: 90px;
   height: 28px;

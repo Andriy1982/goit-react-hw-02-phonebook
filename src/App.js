@@ -19,11 +19,22 @@ export default class App extends Component {
     this.setState(prevState => {
       console.log(prevState);
       if (prevState.contacts.some(el => el.name === contact.name)) {
-        console.log('this contact ready yet');
+        alert(`${contact.name} is already in contacts!`);
         return;
       }
       return {
         contacts: [...prevState.contacts, contact],
+      };
+    });
+  };
+
+  handleButtonDelete = contactId => {
+    console.log(contactId);
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(
+          contact => contact.id !== contactId,
+        ),
       };
     });
   };
@@ -50,7 +61,10 @@ export default class App extends Component {
 
         <h2>Contacts</h2>
         <Filter name={filter} onChangeFilter={this.handleFilter} />
-        <Contacts contacts={visibleContacts} />
+        <Contacts
+          contacts={visibleContacts}
+          onDeleteContact={this.handleButtonDelete}
+        />
       </section>
     );
   }

@@ -6,6 +6,7 @@ import {
   FormLabel,
   FormInput,
   FormButton,
+  FormInputNumber,
 } from './SignupFormStyledComponent';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -72,14 +73,15 @@ export default class Signupform extends Component {
         </FormLabel>
         <FormLabel>
           Number
-          <FormInput
+          <FormInputNumber
             type="number"
             value={number}
             name="number"
             onChange={this.handleChange}
             placeholder="111-11-11"
             required
-            minlength="2"
+            // minlength="2"
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
           />
         </FormLabel>
         <FormButton type="submit">Add contact</FormButton>
