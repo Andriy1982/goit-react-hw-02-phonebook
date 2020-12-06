@@ -7,43 +7,21 @@ export const Form = styled.form`
 export const FormLabel = styled.label`
   display: block;
   font-size: 20px;
-  /* padding: 10px; */
   margin-bottom: 10px;
 `;
 
 export const FormInput = styled.input`
-  /* outline: none; */
   display: block;
   width: 200px;
   font-size: 13px;
   padding: 6px 0 4px 10px;
-  border: 1px solid #cecece;
+  border: ${({ border }) => border || '1px solid #ccc'};
   background: #f6f6f6;
   border-radius: 8px;
 
-  &:required:focus:valid:not(:placeholder-shown) {
-    border: 2px solid green;
-  }
-
-  &:required:focus:invalid:not(:placeholder-shown) {
-    border: 2px solid red;
-  }
-
-  /* &:invalid {
-    border: 2px solid red;
-  } */
-
-  /* &:valid {
-    border: 2px solid green; */
-
   &:focus {
     outline: none;
-    /* border: none; */
   }
-`;
-
-export const FormInputNumber = styled(FormInput)`
-  /* background-color: palevioletred; */
 `;
 
 export const FormButton = styled.button`
@@ -66,4 +44,12 @@ export const FormButton = styled.button`
     margin-bottom: -1px;
     zoom: 1;
   }
+`;
+
+export const Text = styled.p`
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+  color: red;
+  /* color: ${props => props.color || '#4d4d4d'} */
 `;

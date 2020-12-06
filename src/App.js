@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 
 import Contacts from './Contacts';
-import Signupform from './SignupForm/SignupForm';
+import SignupForm from './SignupForm/SignupForm';
 import Filter from './Filter';
 
 export default class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
   addContact = contact => {
     this.setState(prevState => {
-      console.log(prevState);
       if (prevState.contacts.some(el => el.name === contact.name)) {
         alert(`${contact.name} is already in contacts!`);
         return;
@@ -29,7 +23,6 @@ export default class App extends Component {
   };
 
   handleButtonDelete = contactId => {
-    console.log(contactId);
     this.setState(prevState => {
       return {
         contacts: prevState.contacts.filter(
@@ -40,7 +33,6 @@ export default class App extends Component {
   };
 
   handleFilter = filter => {
-    console.log(filter);
     this.setState({ filter });
   };
 
@@ -52,15 +44,16 @@ export default class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { contacts, filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
     return (
       <section className="section">
         <h1>Phonebook</h1>
-        <Signupform onAddContact={this.addContact} />
-
+        <SignupForm onAddContact={this.addContact} />
         <h2>Contacts</h2>
-        <Filter name={filter} onChangeFilter={this.handleFilter} />
+        {contacts.length > 0 && (
+          <Filter name={filter} onChangeFilter={this.handleFilter} />
+        )}
         <Contacts
           contacts={visibleContacts}
           onDeleteContact={this.handleButtonDelete}
