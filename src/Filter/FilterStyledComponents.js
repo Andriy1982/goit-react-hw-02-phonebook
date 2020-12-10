@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const FilterLabel = styled.label`
+export const FilterContainer = styled.label`
   font-size: 18px;
 `;

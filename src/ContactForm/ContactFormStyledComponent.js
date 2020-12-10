@@ -15,7 +15,7 @@ export const FormInput = styled.input`
   width: 200px;
   font-size: 13px;
   padding: 6px 0 4px 10px;
-  border: ${({ border }) => border || '1px solid #ccc'};
+  border: 1px solid #ccc;
   background: #f6f6f6;
   border-radius: 8px;
 
@@ -44,12 +44,4 @@ export const FormButton = styled.button`
     margin-bottom: -1px;
     zoom: 1;
   }
-`;
-
-export const Text = styled.p`
-  margin: 0;
-  font-size: 14px;
-  font-family: 'Raleway', sans-serif;
-  color: red;
-  /* color: ${props => props.color || '#4d4d4d'} */
 `;

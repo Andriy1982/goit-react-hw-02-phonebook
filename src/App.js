@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Contacts from './Contacts';
-import SignupForm from './SignupForm/SignupForm';
+import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter';
 
 export default class App extends Component {
@@ -49,7 +49,7 @@ export default class App extends Component {
     return (
       <section className="section">
         <h1>Phonebook</h1>
-        <SignupForm onAddContact={this.addContact} />
+        <ContactForm onAddContact={this.addContact} />
         <h2>Contacts</h2>
         {contacts.length > 0 && (
           <Filter name={filter} onChangeFilter={this.handleFilter} />
